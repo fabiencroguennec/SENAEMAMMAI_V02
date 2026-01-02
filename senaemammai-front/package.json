@@ -1,0 +1,35 @@
+{
+  "name": "senaemammai-front",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev:web": "nuxt dev",
+    "dev": "concurrently \"npm run dev:web\" \"wait-on http://localhost:3001 && NODE_ENV=development electron .\"",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "electron:dev": "npm run dev"
+  },
+  "main": "electron/main.cjs",
+  "dependencies": {
+    "@nuxt/image": "^2.0.0",
+    "@nuxt/ui": "^2.19.0",
+    "@nuxtjs/supabase": "^2.0.3",
+    "@vueuse/core": "^14.1.0",
+    "gsap": "^3.14.2",
+    "nuxt": "^4.2.2",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "nuxt-schema-org": "^5.0.10",
+    "wait-on": "^9.0.3"
+  }
+}

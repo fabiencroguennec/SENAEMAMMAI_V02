@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #334155;
+}
+
+/* Texture Overlays */
+.texture-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.texture-dots {
+    background-image: radial-gradient(#000 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.texture-grid {
+    background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.texture-lines {
+    background: repeating-linear-gradient(45deg, #000, #000 2px, transparent 2px, transparent 10px);
+}
+
+.bg-noise {
+    @apply texture-noise;
+}
+
+.bg-dots {
+    @apply texture-dots;
+}
+
+.bg-grid {
+    @apply texture-grid;
+}
