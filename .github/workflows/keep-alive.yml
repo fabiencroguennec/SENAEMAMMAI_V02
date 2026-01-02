@@ -1,4 +1,4 @@
-name: Keep Supabase Alive
+name: Keep Supabase Alive (Direct DB)
 
 on:
   schedule:
@@ -7,16 +7,17 @@ on:
   workflow_dispatch: # Allow manual trigger
 
 jobs:
-  ping:
+  ping-db:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Application
+      - name: Ping Supabase REST API
         run: |
-          # Replace with your actual deployed URL
-          # Using a secret is better practice, but for simplicity we assume public URL or Env Var
-          # Set SITE_URL in GitHub Repository Secrets
+          # Query the 'pages' table directly via Supabase REST API
+          # This bypasses the frontend and wakes up the DB directly.
           
-          SITE_URL="${{ secrets.SITE_URL || 'https://votre-site-url.com' }}"
+          curl -f -s -o /dev/null -w "%{http_code}" \
+          -X GET '${{ secrets.SUPABASE_URL }}/rest/v1/pages?select=id&limit=1' \
+          -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
           
-          echo "Pinging $SITE_URL/api/ping..."
-          curl -f "$SITE_URL/api/ping" || echo "Ping failed (check URL or server status)"
+          echo "Ping sent to Supabase REST API."
